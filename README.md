@@ -1,4 +1,6 @@
-# Inclusive Tech Project
+PrefChefs
+=========
+###### Inclusive Technology Project
 ## Group members
 Elizabeth Crowdus, Luke Giacalone, Lilly Hackworth, Jillian Ritchey
 

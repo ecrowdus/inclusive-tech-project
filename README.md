@@ -11,7 +11,8 @@ Students at the University of Chicago with dietary restrictions and allergies.
 Implement a way for this user group to more easily navigate the dining halls. We want to help users efficiently identify which dishes they can eat. 
 
 ## Deliverables
-* [Project proposal](https://ecrowdus.github.io/inclusive-tech-project/)
+* [Project proposal](https://github.com/ecrowdus/inclusive-tech-project/blob/master/proposal.pdf)
+* [Project proposal presentation](https://docs.google.com/presentation/d/1P4LJhmu5Apntd07_xdw1duzqCmj63hEjgMkNQJUpsW0/edit?usp=sharing)
 * [User research results](https://ecrowdus.github.io/inclusive-tech-project/)
 * [Design alternatives](https://ecrowdus.github.io/inclusive-tech-project/)
 * [Project poster](https://ecrowdus.github.io/inclusive-tech-project/)

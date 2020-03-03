@@ -1,0 +1,27 @@
+table {
+    width: inherit;
+    margin: auto;
+}
+tr {
+    cursor: pointer;
+    border-bottom: none;
+}
+td {
+    padding: 10px 5px;
+}
+
+#spinnerPane {
+    position: absolute;
+    left: calc(50% - 32px);
+    top: calc(50% - 32px);
+}
+
+#hallPane {
+    position: absolute;
+    top: 0;
+}
+
+.continue {
+    font-size: 1.65rem;
+    padding-top: 2rem;
+}

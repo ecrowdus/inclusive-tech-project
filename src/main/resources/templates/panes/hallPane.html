@@ -1,0 +1,161 @@
+<html xmlns:th="https://www.thymeleaf.org">
+<script src="/js/hallPane.js"></script>
+<link rel="stylesheet" href="/css/hallPane.css">
+<div id="stations">
+<div class="">
+    <div class="row">
+        <div class="col s12">
+            <button class="btn-floating btn-flat waves-effect hall-back-button">
+                <i class="material-icons back-button" style="display: inline-block; font-size: 1.65rem">arrow_back_ios</i>
+            </button>
+            <div class="center" style="display: inline-block">
+                <h4>
+                <span th:text="${meal}"></span>
+                <span> at </span>
+                <span th:text="${diningHall}"></span>
+                </h4>
+                <span th:text="${date}"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<th:block th:if="${menu.size() == 0}">
+    <h5 class="center">No menu found!</h5>
+</th:block>
+
+<!-- Stations List -->
+<th:block th:each="station : ${menu}">
+<th:block th:if="${station.foodStatus == T(com.prefchefs.findfood.FoodStatus).OK}">
+    <div class="green lighten-5 waves-effect waves-green station-item" th:data-name="${station.name}" style="width:100%;">
+    <div class="station">
+        <div class="container">
+            <h5 class="stationHeader"><i class="material-icons green-text text-darken-2">check</i><span th:text="${station.name}"></span></h5>
+            <i class="material-icons right continue">arrow_forward_ios</i>
+        </div>
+    </div>
+    </div>
+</th:block>
+<th:block th:if="${station.foodStatus == T(com.prefchefs.findfood.FoodStatus).POTENTIALLY}">
+    <div class="yellow lighten-5 waves-effect waves-yellow station-item" th:data-name="${station.name}" style="width:100%;">
+    <div class="container station">
+        <h5 class="stationHeader"><i class="material-icons yellow-text text-darken-2">warning</i><span th:text="${station.name}"></span></h5>
+        <i class="material-icons right continue">arrow_forward_ios</i>
+    </div>
+    </div>
+</th:block>
+<th:block th:if="${station.foodStatus == T(com.prefchefs.findfood.FoodStatus).INEDIBLE}">
+     <div class="red lighten-5 waves-effect waves-red station-item" th:data-name="${station.name}" style="width:100%;">
+     <div class="container station">
+        <h5 class="stationHeader"><i class="material-icons red-text text-darken-2">close</i><span th:text="${station.name}"></span></h5>
+        <i class="material-icons right continue">arrow_forward_ios</i>
+     </div>
+     </div>
+</th:block>
+</th:block>
+</div>
+
+
+<!-- Dishes List -->
+<th:block th:each="station : ${menu}">
+<div class="station-pane" th:data-name="${station.name}">
+    <div class="row">
+        <div class="col s12">
+            <button class="btn-floating btn-flat waves-effect station-back-button">
+                <i class="material-icons back-button" style="display: inline-block; font-size: 1.65rem">arrow_back_ios</i>
+            </button>
+            <div class="center" style="display: inline-block">
+                <h4>
+                <span th:text="${meal}"></span>
+                <span> at </span>
+                <span th:text="${diningHall}"></span>
+                </h4>
+                <span th:text="${date}"></span>
+            </div>
+        </div>
+    </div>
+    <th:block th:each="dish : ${station.dishes}">
+        <th:block th:if="${dish.foodStatus == T(com.prefchefs.findfood.FoodStatus).OK}">
+            <div class="green lighten-5 waves-effect waves-green dish-item" th:data-station="${station.name}" th:data-dish="${dish.name}" style="width:100%;">
+            <div class="station">
+                <div class="container">
+                    <h5 class="stationHeader"><i class="material-icons green-text text-darken-2">check</i><span th:text="${dish.name}"></span></h5>
+                    <i class="material-icons right continue">arrow_forward_ios</i>
+                </div>
+            </div>
+            </div>
+        </th:block>
+        <th:block th:if="${dish.foodStatus == T(com.prefchefs.findfood.FoodStatus).POTENTIALLY}">
+            <div class="yellow lighten-5 waves-effect waves-yellow dish-item" th:data-station="${station.name}" th:data-dish="${dish.name}" style="width:100%;">
+            <div class="container station">
+                <h5 class="stationHeader"><i class="material-icons yellow-text text-darken-2">warning</i><span th:text="${dish.name}"></span></h5>
+                <i class="material-icons right continue">arrow_forward_ios</i>
+            </div>
+            </div>
+        </th:block>
+        <th:block th:if="${station.foodStatus == T(com.prefchefs.findfood.FoodStatus).INEDIBLE}">
+             <div class="red lighten-5 waves-effect waves-red dish-item" th:data-station="${station.name}" th:data-dish="${dish.name}" style="width:100%;">
+             <div class="container station">
+                <h5 class="stationHeader"><i class="material-icons red-text text-darken-2">close</i><span th:text="${dish.name}"></span></h5>
+                <i class="material-icons right continue">arrow_forward_ios</i>
+             </div>
+             </div>
+        </th:block>
+    </th:block>
+</div>
+</th:block>
+
+
+<!-- Ingredients List -->
+<th:block th:each="station : ${menu}">
+    <th:block th:each="dish : ${station.dishes}">
+    <div class="dish-pane" th:data-station="${station.name}" th:data-dish="${dish.name}">
+        <div class="row">
+            <div class="col s12">
+                <button class="btn-floating btn-flat waves-effect dish-back-button" th:data-station="${station.name}">
+                    <i class="material-icons back-button" style="display: inline-block; font-size: 1.65rem">arrow_back_ios</i>
+                </button>
+                <div class="center" style="display: inline-block">
+                    <h4>
+                    <span th:text="${meal}"></span>
+                    <span> at </span>
+                    <span th:text="${diningHall}"></span>
+                    </h4>
+                    <span th:text="${date}"></span>
+                </div>
+            </div>
+        </div>
+        <th:block th:each="ingredient : ${dish.ingredients}">
+
+            <th:block th:if="${ingredient.foodStatus == T(com.prefchefs.findfood.FoodStatus).OK}">
+                <div class="green lighten-5 waves-effect waves-green ingredient-item" th:data-name="${ingredient.name}" style="width:100%;">
+                <div class="station">
+                    <div class="container">
+                        <h5 class="stationHeader"><i class="material-icons green-text text-darken-2">check</i><span th:text="${ingredient.name}"></span></h5>
+                        <i class="material-icons right continue">arrow_forward_ios</i>
+                    </div>
+                </div>
+                </div>
+            </th:block>
+            <th:block th:if="${ingredient.foodStatus == T(com.prefchefs.findfood.FoodStatus).POTENTIALLY}">
+                <div class="yellow lighten-5 waves-effect waves-yellow ingredient-item" th:data-name="${ingredient.name}" style="width:100%;">
+                <div class="container station">
+                    <h5 class="stationHeader"><i class="material-icons yellow-text text-darken-2">warning</i><span th:text="${ingredient.name}"></span></h5>
+                    <i class="material-icons right continue">arrow_forward_ios</i>
+                </div>
+                </div>
+            </th:block>
+            <th:block th:if="${ingredient.foodStatus == T(com.prefchefs.findfood.FoodStatus).INEDIBLE}">
+                 <div class="red lighten-5 waves-effect waves-red ingredient-item" th:data-name="${ingredient.name}" style="width:100%;">
+                 <div class="container station">
+                    <h5 class="stationHeader"><i class="material-icons red-text text-darken-2">close</i><span th:text="${ingredient.name}"></span></h5>
+                    <i class="material-icons right continue">arrow_forward_ios</i>
+                 </div>
+                 </div>
+            </th:block>
+
+            </th:block>
+     </div>
+    </th:block>
+</th:block>
+

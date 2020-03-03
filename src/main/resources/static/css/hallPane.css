@@ -1,0 +1,20 @@
+h5.stationHeader {
+    padding: 1.52rem 0 .912rem 0;
+    margin: 0;
+    display: inline-block;
+}
+
+h5.stationHeader span {
+    margin: 0 10px;
+}
+
+.back-button {
+    color: inherit !important;
+}
+
+.station-pane, .dish-pane {
+    display: none;
+    position: absolute;
+    width: 100%;
+    top: 0;
+}

@@ -18,3 +18,15 @@ h5.stationHeader span {
     width: 100%;
     top: 0;
 }
+
+.ingredient-title div {
+    padding-bottom: 0.656rem !important;
+}
+
+.ingredient-title div h5 {
+    margin-bottom: 0;
+}
+
+i.left {
+    margin-right: 10px;
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>PrefChefs</title>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="/js/profileEdit.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/profileEdit.css">
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+<form class="profile-form" th:action="${param.initial} ? @{/profile/edit?initial=true} : @{/profile/edit}" th:method="POST">
+<div class="row">
+    <div class="col s12 blue lighten-5">
+        <h4 style="display: inline-block;">Dietary Restrictions</h4>
+    </div>
+</div>
+<div class="container">
+    <p>
+        <label>
+        <input type="checkbox" name="restrictions" value="dairy-free"
+            th:attrappend="checked=${T(com.prefchefs.findfood.dao.Restriction).listContainsRestriction(restrictions, 'dairy-free')}?checked" />
+        <span>Dairy-free</span>
+        </label>
+    </p>
+    <p>
+        <label>
+        <input type="checkbox" name="restrictions" value="gluten-free"
+            th:attrappend="checked=${T(com.prefchefs.findfood.dao.Restriction).listContainsRestriction(restrictions, 'gluten-free')}?checked" />
+        <span>Gluten-free</span>
+        </label>
+    </p>
+    <p>
+        <label>
+        <input type="checkbox" name="restrictions" value="halal"
+            th:attrappend="checked=${T(com.prefchefs.findfood.dao.Restriction).listContainsRestriction(restrictions, 'halal')}?checked" />
+        <span>Halal</span>
+        </label>
+    </p>
+    <p>
+        <label>
+        <input type="checkbox" name="restrictions" value="kosher"
+            th:attrappend="checked=${T(com.prefchefs.findfood.dao.Restriction).listContainsRestriction(restrictions, 'kosher')}?checked" />
+        <span>Kosher</span>
+        </label>
+    </p>
+    <p>
+        <label>
+        <input type="checkbox" name="restrictions" value="pescatarian"
+            th:attrappend="checked=${T(com.prefchefs.findfood.dao.Restriction).listContainsRestriction(restrictions, 'pescatarian')}?checked" />
+        <span>Pescatarian</span>
+        </label>
+    </p>
+    <p>
+        <label>
+        <input type="checkbox" name="restrictions" value="vegan"
+            th:attrappend="checked=${T(com.prefchefs.findfood.dao.Restriction).listContainsRestriction(restrictions, 'vegan')}?checked" />
+        <span>Vegan</span>
+        </label>
+    </p>
+    <p>
+        <label>
+        <input type="checkbox" name="restrictions" value="vegetarian"
+            th:attrappend="checked=${T(com.prefchefs.findfood.dao.Restriction).listContainsRestriction(restrictions, 'vegetarian')}?checked" />
+        <span>Vegetarian</span>
+        </label>
+    </p>
+</div>
+    <hr style="margin: 25px 0; border: 1px solid lightgray;">
+
+    <div class="row">
+        <div class="col s12 blue lighten-5">
+            <h4 style="display: inline-block;">Allergies</h4>
+        </div>
+    </div>
+<div class="container">
+    <div class="input-field">
+          <input id="add-box" type="text">
+          <label for="add-box">Type and hit 'enter' to add</label>
+    </div>
+    <div id="allergyList">
+    <th:block th:each="a : ${allergies}">
+        <p>
+            <label>
+            <input type="checkbox" name="allergies" th:value="${a.name}" checked="checked" />
+            <span th:text="${a.name}"></span>
+            </label>
+        </p>
+    </th:block>
+    </div>
+</div>
+
+<div class="submit-bar">
+    <div class="container">
+        <button class="btn right waves-effect waves-light" type="submit">Save</button>
+        <a href="/profile" class="btn right waves-effect black-text grey lighten-3 cancel-button">Cancel</a>
+    </div>
+</div>
+</form>
+
+</body>
+</html>

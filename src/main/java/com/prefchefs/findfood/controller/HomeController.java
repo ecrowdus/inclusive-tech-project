@@ -3,9 +3,11 @@ package com.prefchefs.findfood.controller;
 import com.prefchefs.findfood.DiningHall;
 import com.prefchefs.findfood.Meal;
 import com.prefchefs.findfood.dao.MenuData;
+import com.prefchefs.findfood.dao.PrefChefsUser;
 import com.prefchefs.findfood.dao.Station;
 import com.prefchefs.findfood.exception.MenuNotFoundException;
 import com.prefchefs.findfood.service.MenuService;
+import com.prefchefs.findfood.service.RestrictionsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,6 +28,9 @@ public class HomeController {
     @Autowired
     MenuService menuService;
 
+    @Autowired
+    RestrictionsService restrictionsService;
+
     @GetMapping("")
     public String home(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -34,6 +39,9 @@ public class HomeController {
 
     @GetMapping("meal")
     public String meal(Model model, @RequestParam("meal") Meal meal, @RequestParam("diningHall") DiningHall diningHall, @RequestParam("date") Date date) {
+        PrefChefsUser user = (PrefChefsUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+
         model.addAttribute("meal", meal.toString());
         model.addAttribute("diningHall", diningHall.toString());
         DateFormat df = new SimpleDateFormat("MMMM d, yyyy");
@@ -41,7 +49,7 @@ public class HomeController {
         model.addAttribute("menu", new ArrayList<Station>()); // empty list in case no menu is found
         try {
             MenuData md = menuService.loadMenuByDateAndLocation(diningHall, date);
-            model.addAttribute("menu", md.getMeal(meal));
+            model.addAttribute("menu", md.getMealWithStatus(meal, user.getRestrictions(), restrictionsService));
         }
         catch(MenuNotFoundException e) {
             //return "Menu not found!";

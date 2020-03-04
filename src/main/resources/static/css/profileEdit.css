@@ -1,0 +1,19 @@
+.submit-bar {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    height: 64px;
+}
+
+.submit-bar button, .submit-bar a {
+    margin-top: 14px;
+}
+
+.profile-form {
+    margin-bottom: 80px;
+}
+
+.cancel-button {
+    margin-right: 10px;
+}

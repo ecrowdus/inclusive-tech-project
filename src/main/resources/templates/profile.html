@@ -1,10 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
+    <meta charset="UTF-8">
+    <title>PrefChefs</title>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!--<script src="/js/home.js"></script>-->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 <body>
+<div class="row">
+    <div class="col s12 blue lighten-5">
+        <a href="/home" class="btn-floating btn-flat waves-effect hall-back-button">
+            <i class="material-icons back-button" style="display: inline-block; font-size: 1.65rem; color: black;">arrow_back_ios</i>
+        </a>
+        <h4 style="display: inline-block;">My Dietary Profile</h4>
+    </div>
+</div>
+
+<div th:if="${param.updated}" class="container alert alert-success">
+    Restrictions updated
+</div>
+
+<div class="container">
+    <h5>Dietary Restrictions</h5>
+    <th:block th:if="${restrictions.size() == 0}">
+        <i>No dietary restrictions</i>
+    </th:block>
+    <th:block th:unless="${restrictions.size() == 0}">
+        <ul class="browser-default" style="margin: 0;">
+            <th:block th:each="r : ${restrictions}">
+                <li th:text="${r.name}"></li>
+            </th:block>
+        </ul>
+    </th:block>
+
+    <hr style="margin: 25px 0; border: 1px solid lightgray;">
+
+    <h5>Allergies</h5>
+    <th:block th:if="${allergies.size() == 0}">
+        <i>No allergies</i>
+    </th:block>
+    <th:block th:unless="${allergies.size() == 0}">
+        <ul class="browser-default" style="margin: 0;">
+            <th:block th:each="a : ${allergies}">
+                <li th:text="${a.name}"></li>
+            </th:block>
+        </ul>
+    </th:block>
+
+    <div class="row center" style="margin-top: 25px;">
+        <a href="/profile/edit" class="waves-effect waves-teal btn-flat">Edit Profile</a>
+    </div>
+</div>
 
 </body>
 </html>

@@ -93,7 +93,7 @@
             </div>
             </div>
         </th:block>
-        <th:block th:if="${station.foodStatus == T(com.prefchefs.findfood.FoodStatus).INEDIBLE}">
+        <th:block th:if="${dish.foodStatus == T(com.prefchefs.findfood.FoodStatus).INEDIBLE}">
              <div class="red lighten-5 waves-effect waves-red dish-item" th:data-station="${station.name}" th:data-dish="${dish.name}" style="width:100%;">
              <div class="container station">
                 <h5 class="stationHeader"><i class="material-icons red-text text-darken-2">close</i><span th:text="${dish.name}"></span></h5>
@@ -125,9 +125,26 @@
                 </div>
             </div>
         </div>
+        <div class="row lighten-5" th:classappend="${dish.foodStatus == T(com.prefchefs.findfood.FoodStatus).INEDIBLE ? 'red' : 'green'}">
+            <div class="container ingredient-title">
+                <div class="col s12">
+                    <h5><span th:text="${dish.name}"></span></h5>
+                    <span>at the <span th:text="${station.name}"></span> station</span>
+                </div>
+            </div>
+        </div>
         <th:block th:each="ingredient : ${dish.ingredients}">
 
-            <th:block th:if="${ingredient.foodStatus == T(com.prefchefs.findfood.FoodStatus).OK}">
+        <th:block th:if="${ingredient.foodStatus == T(com.prefchefs.findfood.FoodStatus).INEDIBLE}">
+         <div class="ingredient-item" th:data-name="${ingredient.name}" style="width:100%;">
+             <div class="container station">
+                <h6 class=""><i class="material-icons red-text text-darken-2 left">close</i> Contains <span th:text="${ingredient.name}"></span></h6>
+             </div>
+         </div>
+        </th:block>
+
+
+            <!--<th:block th:if="${ingredient.foodStatus == T(com.prefchefs.findfood.FoodStatus).OK}">
                 <div class="green lighten-5 waves-effect waves-green ingredient-item" th:data-name="${ingredient.name}" style="width:100%;">
                 <div class="station">
                     <div class="container">
@@ -152,9 +169,20 @@
                     <i class="material-icons right continue">arrow_forward_ios</i>
                  </div>
                  </div>
-            </th:block>
+            </th:block>-->
 
             </th:block>
+            <br>
+            <div class="center ingredient-show-more" th:data-station="${station.name}" th:data-dish="${dish.name}">
+                <button class="btn btn-flat waves-effect waves-teal">Show more <i class="material-icons right">keyboard_arrow_down</i></button>
+            </div>
+            <div class="container all-ingredients-list" style="display: none;" th:data-station="${station.name}" th:data-dish="${dish.name}">
+                <p>
+                    <th:block th:each="ingredient : ${dish.ingredients}">
+                        <span th:style="${ingredient.foodStatus == T(com.prefchefs.findfood.FoodStatus).INEDIBLE ? 'background-color: #fff9c4;' : ''}" th:text="${ingredient.name}"></span>,&nbsp;
+                    </th:block>
+                </p>
+            </div>
      </div>
     </th:block>
 </th:block>

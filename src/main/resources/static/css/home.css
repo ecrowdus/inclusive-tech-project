@@ -25,3 +25,12 @@ td {
     font-size: 1.65rem;
     padding-top: 2rem;
 }
+
+.restrictionsText {
+    background-color: #fff9c4;
+    margin-top: 16px;
+}
+
+.italic {
+    font-style: italic;
+}

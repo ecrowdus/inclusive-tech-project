@@ -4,6 +4,7 @@ import com.prefchefs.findfood.DiningHall;
 import com.prefchefs.findfood.Meal;
 import com.prefchefs.findfood.dao.MenuData;
 import com.prefchefs.findfood.dao.PrefChefsUser;
+import com.prefchefs.findfood.dao.Restriction;
 import com.prefchefs.findfood.dao.Station;
 import com.prefchefs.findfood.exception.MenuNotFoundException;
 import com.prefchefs.findfood.service.MenuService;
@@ -20,6 +21,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.stream.Collectors;
 
 @Controller()
 @RequestMapping("/home")
@@ -34,6 +36,9 @@ public class HomeController {
     @GetMapping("")
     public String home(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        PrefChefsUser user = (PrefChefsUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        model.addAttribute("firstName", user.getFirst_name());
+        model.addAttribute("restrictions", user.getRestrictions().stream().map(Restriction::getName).collect(Collectors.toList()));
         return "home";
     }
 

@@ -3,7 +3,7 @@ package com.prefchefs.findfood;
 public enum DiningHall {
 
     CATHEY("Cathey"),
-    BARTLETT("Barlett"),
+    BARTLETT("Bartlett"),
     BAKER("Baker");
 
     private String name;

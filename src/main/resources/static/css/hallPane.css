@@ -30,3 +30,16 @@ h5.stationHeader span {
 i.left {
     margin-right: 10px;
 }
+
+.ingredient-show-more {
+    color: #343434;
+    text-decoration: none;
+    text-align: center;
+    letter-spacing: .5px;
+    font-size: 14px;
+    outline: 0;
+    height: 36px;
+    line-height: 36px;
+    padding: 16px 16px 0 16px;
+    text-transform: uppercase;
+}

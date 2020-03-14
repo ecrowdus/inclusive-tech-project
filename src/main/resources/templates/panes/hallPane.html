@@ -16,6 +16,9 @@
                 </h4>
                 <span th:text="${date}"></span>
             </div>
+            <a class="btn-floating btn-flat waves-effect right" href="/profile">
+                <i class="material-icons back-button" style="display: inline-block; font-size: 1.65rem">person</i>
+            </a>
         </div>
     </div>
 </div>
@@ -174,12 +177,13 @@
             </th:block>
             <br>
             <div class="center ingredient-show-more" th:data-station="${station.name}" th:data-dish="${dish.name}">
-                <button class="btn btn-flat waves-effect waves-teal">Show more <i class="material-icons right">keyboard_arrow_down</i></button>
+                <!--<button class="btn btn-flat waves-effect waves-teal">Show more <i class="material-icons right">keyboard_arrow_down</i></button>-->
+                <span>Ingredients</span>
             </div>
-            <div class="container all-ingredients-list" style="display: none;" th:data-station="${station.name}" th:data-dish="${dish.name}">
+            <div class="container all-ingredients-list" th:data-station="${station.name}" th:data-dish="${dish.name}">
                 <p>
-                    <th:block th:each="ingredient : ${dish.ingredients}">
-                        <span th:style="${ingredient.foodStatus == T(com.prefchefs.findfood.FoodStatus).INEDIBLE ? 'background-color: #fff9c4;' : ''}" th:text="${ingredient.name}"></span>,&nbsp;
+                    <th:block th:each="ingredient, iterStat : ${dish.ingredients}">
+                        <span th:style="${ingredient.foodStatus == T(com.prefchefs.findfood.FoodStatus).INEDIBLE ? 'background-color: #fff9c4;' : ''}" th:text="${ingredient.name}"></span><span th:text="!${iterStat.last} ? ', '"></span>
                     </th:block>
                 </p>
             </div>

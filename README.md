@@ -19,7 +19,7 @@ Implement a way for this user group to more easily navigate the dining halls. We
 * [Low fidelity prototype 2 - Web-based filtration](https://marvelapp.com/4cad9id/screen/66564679 )
 * [Low fidelity prototype report](https://github.com/ecrowdus/inclusive-tech-project/blob/master/medium_fidelity_prototype_report.pdf)
 * [Final prototype](https://ecrowdus.github.io/inclusive-tech-project/)
-* [User evaluation](https://ecrowdus.github.io/inclusive-tech-project/)
+* [User evaluation](https://github.com/ecrowdus/inclusive-tech-project/blob/master/final_report.pdf)
 * [Project video](https://www.youtube.com/watch?v=toNTXmBJuXE)
 
 #### Slogan Ideas
